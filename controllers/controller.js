@@ -13,6 +13,9 @@ module.exports = {
 	},
 
 	create: (req, res) => {
+		console.log(req.body);
+
+
 		const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
 		const { title = `Post ${id}`, content = '', image = '', tags = [] } = req.body || {};
 		const newPost = { id, title, content, image, tags };

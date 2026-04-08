@@ -8,7 +8,7 @@ module.exports = {
 	show: (req, res) => {
 		const id = Number(req.params.id);
 		const post = posts.find(p => p.id === id);
-		if (!post) return res.status(404).send(`Post ${id} non trovato`);
+		if (!post) return res.status(404).json({ error: `Post ${id} non trovato` });
 		res.json(post);
 	},
 
@@ -34,7 +34,7 @@ module.exports = {
 	destroy: (req, res) => {
 		const id = Number(req.params.id);
 		const idx = posts.findIndex(p => p.id === id);
-		if (idx === -1) return res.status(404).send(`Post ${id} non trovato`);
+		if (idx === -1) return res.status(404).json({ error: `Post ${id} non trovato` });
 		posts.splice(idx, 1);
 		console.log(posts);
 		res.status(204).end();
